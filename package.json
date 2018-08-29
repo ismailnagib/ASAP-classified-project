@@ -1,0 +1,27 @@
+{
+  "name": "ASAP-classified-project",
+  "version": "1.0.0",
+  "description": "Top secret super classified project to break the bound of time and place (in other words: a delivery service app)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismailnagib/ASAP-classified-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismailnagib/ASAP-classified-project/issues"
+  },
+  "homepage": "https://github.com/ismailnagib/ASAP-classified-project#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1"
+  }
+}
