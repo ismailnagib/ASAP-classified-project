@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     isAvailable: DataTypes.BOOLEAN
   }, {});
   Courier.associate = function(models) {
-    // associations can be defined here
+    Courier.belongsToMany(models.User, {through: models.Order})
   };
   return Courier;
 };

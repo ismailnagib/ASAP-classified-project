@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     isLoggedIn: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsToMany(models.Courier, {through: models.Order})
   };
   return User;
 };
