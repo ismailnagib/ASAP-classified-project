@@ -18,6 +18,6 @@ app.use(session({
 
 app.get('/', (req, res) => {res.redirect('/auth')})
 app.use('/auth', Auth)
-app.use('/order', orderRouter)
+app.use('/order' , orderRouter)
 
 app.listen(3000, () => console.log('Running on port 3000'))
