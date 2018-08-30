@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     address: DataTypes.STRING,
     role: DataTypes.STRING,
-    isLoggedIn: DataTypes.BOOLEAN
+    password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
     User.belongsToMany(models.Courier, {through: models.Order})
