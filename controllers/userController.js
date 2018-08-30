@@ -4,7 +4,6 @@ const Encryption = require('./encryption')
 class UserController {
 
     static login(req, res) {
-        console.log(UserController.passwordGenerator(req.body.password))
         User.findOne({where: {email: req.body.email, password: Encryption.passwordGenerator(req.body.password)}})
         .then(datum => {
             if(datum) {
@@ -47,7 +46,15 @@ class UserController {
         })
     }
 
-    static checkLogin(req, res) {
+    static checkLoginAuth(req, res) {
+        if (req.session.user) {
+            res.redirect('/auth/dashboard')
+        } else {
+            res.render('login', {message: req.query.message})
+        }
+    }
+
+    static checkLoginDashboard(req, res) {
         if (req.session.user) {
             res.render('dashboard', {name: req.session.user.name})
         } else {
