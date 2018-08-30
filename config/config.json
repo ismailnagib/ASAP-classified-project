@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "123456789",
     "database": "ASAP-classified-project",
     "host": "127.0.0.1",
     "dialect": "postgres"

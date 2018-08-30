@@ -8,9 +8,31 @@ module.exports = (sequelize, DataTypes) => {
     isCompleted: DataTypes.BOOLEAN,
     deliveredTime: DataTypes.DATE,
     arrivedTime: DataTypes.DATE
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate : (input , options) => {
+        input.UserId = 1
+        input.CourierId = 1        
+      },
+      afterCreate: (input, options) => {
+        sequelize.models.Order.update({
+          PackageId: input.id
+        }, {
+          where: {
+            id: input.id
+          }
+        })
+        .then( () => {
+          console.log('test');
+          
+        })
+        .catch(err => console.log(err))
+        
+      }
+    }
+  });
   Order.associate = function(models) {
-    // associations can be defined here
+    Order.belongsTo(models.Package)
   };
   return Order;
 };

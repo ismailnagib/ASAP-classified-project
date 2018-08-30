@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     isFragile: DataTypes.BOOLEAN
   }, {});
   Package.associate = function(models) {
-    // associations can be defined here
+    Package.hasOne(models.Order)
   };
   return Package;
 };
