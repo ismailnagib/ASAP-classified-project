@@ -10,11 +10,13 @@ router
             order: [['id','ASC']],
             include: [{model: PackageModel}],
             where: {
-                UserId: 2, // Nanti di ganti jadi dinamis
+                UserId: 1, // Nanti di ganti jadi dinamis
                 isCompleted: false
             }
         })
         .then( orders => {
+            // var yo = new Date().toLocaleTimeString()
+            // res.send(orders[0].deliveredTime.toDateString())
             
             // console.log(orders);
             // res.send(orders)
@@ -88,7 +90,8 @@ router
 
     .get('/arrived/:id', function(req,res) {
         OrderModel.update({
-            isCompleted: true
+            isCompleted: true,
+            arrivedTime: new Date
         },{
             where: {
                 id: req.params.id

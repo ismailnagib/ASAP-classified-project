@@ -1,29 +1,37 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <title>Ongoing Order List</title>
+</head>
 <html>
-<body align = "center">
-    <h1>Ongoing Order list</h1>
-    <% orders.forEach( order =>{ %>
-    <h2>Order <%= order.id %></h2>
-    <div align="center">
-        <table style="border: 0.2vw solid black">
-            <tr>
-                <th>Package ID</th>
-                <th>Size</th>
-                <th>Weight</th>
-                <th>Price</th>
-                <th>Delivered At</th>
-                <th>Arrived At</th>
-            </tr>
-            <tr style="text-align: center">
-                <td><%= order.PackageId %></td>
-                <td><%= order.Package.size %>m2</td>
-                <td><%= order.Package.weight %>kg</td>
-                <td><%= order.price %></td>
-                <td><%= order.deliveredTime %></td> 
-                <td><%= order.arrivedTime %></td> 
-            </tr>
-        </table>
+<body align = "center" class="fixedBG">
+    <%- include('partials/nav') %>
+    <div style="margin-top: 10%">
+        <p style="font-family: Charter; font-size: 4vw; color: #0b5255;">Completed Order list</p>
     </div>
+    <br>
+    <br>
+    <% orders.forEach( order =>{ %>
+        <div align="center" style="margin-top: 2%; margin-left: 12%; margin-right: 12%; margin-bottom: 5%; font-size: 1.4vw; color: #0b5255; line-height: 3.5vw; font-family: Avenir;">
+            <table style="border: 0.6vw solid linear-gradient(to bottom, rgba(27,129,143,1) 0%, rgba(27,128,143,1) 2%, rgba(10,101,124,1) 100%); background: linear-gradient(to bottom, rgba(27,129,143,1) 0%, rgba(27,128,143,1) 2%, rgba(10,101,124,1) 100%); color: white; ">
+                <tr>
+                    <th>Package ID</th>
+                    <th>Size</th>
+                    <th>Weight</th>
+                    <th>Price</th>
+                    <th>Delivered At</th>
+                    <th>Arrived At</th>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="width: 9%; font-size: 2vw"><%= order.PackageId %></td>
+                    <td style="width: 9%; font-size: 2vw"><%= order.Package.size %>cm2</td>
+                    <td style="width: 9%; font-size: 2vw"><%= order.Package.weight %>kg</td>
+                    <td style="width: 9%; font-size: 2vw"><%= order.price %></td>
+                    <td style="width: 11%; font-size: 1.5vw"><%= order.deliveredTime.toDateString() + ' ' + order.deliveredTime.toLocaleTimeString() %></td> 
+                    <td style="width: 11%; font-size: 1.5vw"><%= order.arrivedTime.toDateString() + ' ' + order.arrivedTime.toLocaleTimeString() %></td>
+                </tr>
+            </table>
+        </div>
     <% }) %>
 
 </body>

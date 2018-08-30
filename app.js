@@ -10,6 +10,9 @@ app.set('view engine', 'ejs')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/css', express.static('public/css'))
+app.use('/img', express.static('public/img'))
+
 app.use(session({
     secret: "a secret",
     resave: false,
