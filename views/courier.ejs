@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>ASAP Express</title>
+    </head>
+    <body>
+        <%- include('home') %>
+        <h3><%= message %></h3>
+        <form action="/courier" method="POST">
+            <input type="text" name="name" value="" placeholder="Name"><br><br>
+            <input type="text" name="phone" value="" placeholder="Phone number"><br><br>
+            <input type="submit" value="Add Courier"><br><br>
+        </form>
+        <table border="2">
+            <th>Name</th><th>Phone</th><th>Rating</th><th>Status</th><th>Options</th>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <tr>
+                    <td><%= data[i].dataValues.name %></td>
+                    <td><%= data[i].dataValues.phone %></td>
+                    <% var rating = "" %>
+                    <% for (var j = 0; j < Math.round(data[i].dataValues.rating / data[i].dataValues.ratedBy); j++) { %>
+                        <% rating += "*" %>
+                    <% } %>
+                    <td><%= rating %></td>
+                    <% if (data[i].dataValues.isAvailable) { %>
+                        <td>Available</td>
+                    <% } else { %>
+                        <td>Unavailable</td>
+                    <% } %>
+                    <td><a href="/courier/<%=data[i].dataValues.id%>/edit">EDIT DATA</a> || <a href="/courier/<%=data[i].dataValues.id%>/fire">FIRE</a></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

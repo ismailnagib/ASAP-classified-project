@@ -4,15 +4,17 @@ const Encryption = require('./encryption')
 class UserController {
 
     static login(req, res) {
-        console.log(UserController.passwordGenerator(req.body.password))
         User.findOne({where: {email: req.body.email, password: Encryption.passwordGenerator(req.body.password)}})
         .then(datum => {
             if(datum) {
                 req.session.user = {
-                    name: datum.dataValues.name
+                    name: datum.dataValues.name,
+                    role: datum.dataValues.role
                 }
                 if (datum.dataValues.role === "client") {
                     res.redirect('/auth/dashboard')
+                } else {
+                    res.redirect('/admin')
                 }
             }
         })
@@ -38,7 +40,8 @@ class UserController {
         User.create(newUser)
         .then(() => {
             req.session.user = {
-                name: req.body.name
+                name: req.body.name,
+                role: "client"
             }
             res.redirect('/auth/dashboard')
         })
@@ -47,9 +50,25 @@ class UserController {
         })
     }
 
-    static checkLogin(req, res) {
+    static checkLoginAuth(req, res) {
+        if (req.session.user) {
+            res.redirect('/auth/dashboard')
+        } else {
+            res.render('login', {message: req.query.message})
+        }
+    }
+
+    static checkLoginDashboard(req, res) {
         if (req.session.user) {
             res.render('dashboard', {name: req.session.user.name})
+        } else {
+            res.redirect('/auth')
+        }
+    }
+
+    static checkLoginAdmin(req, res) {
+        if (req.session.user && req.session.user.role === "admin") {
+            res.render('admin');
         } else {
             res.redirect('/auth')
         }
