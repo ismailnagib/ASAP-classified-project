@@ -1,28 +1,19 @@
 const User = require('../models').User
+const Encryption = require('./encryption')
 
 class UserController {
 
-    static passwordGenerator(password) {
-        const crypto = require('crypto');
-        const hash = crypto.createHmac('sha256', 'the password is secure').update(password).digest('hex');
-        return hash;
-    }
-
-    static checkLogin(req, res) {
-        if (req.session) {
-            res.render('dashboard', {message: req.query.message})
-        }
-    }
-
     static login(req, res) {
         console.log(UserController.passwordGenerator(req.body.password))
-        User.findOne({where: {email: req.body.email, password: UserController.passwordGenerator(req.body.password)}})
+        User.findOne({where: {email: req.body.email, password: Encryption.passwordGenerator(req.body.password)}})
         .then(datum => {
             if(datum) {
                 req.session.user = {
                     name: datum.dataValues.name
                 }
-                res.redirect('/auth/dashboard')
+                if (datum.dataValues.role === "client") {
+                    res.redirect('/auth/dashboard')
+                }
             }
         })
         .catch(err => {
@@ -31,13 +22,12 @@ class UserController {
     }
 
     static register(req, res) {
-        let validPassword = "";
-        if(req.body.password === req.body.passwordCfm) {
-            validPassword = req.body.password;
+        if(req.body.password !== req.body.passwordCfm) {
+            res.redirect('/auth/register?message=Passwords do not match')
         }
         let newUser = {
             name: req.body.name,
-            password: UserController.passwordGenerator(validPassword),
+            password: req.body.password,
             phone: req.body.phone,
             email: req.body.email,
             address: req.body.address,
@@ -53,14 +43,13 @@ class UserController {
             res.redirect('/auth/dashboard')
         })
         .catch(err => {
-            console.log(err)
-            res.redirect('/auth/register')
+            res.redirect(`/auth/register?message=${err.message.slice(18)}`)
         })
     }
 
     static checkLogin(req, res) {
-        if (req.session) {
-            res.render('dashboard')
+        if (req.session.user) {
+            res.render('dashboard', {name: req.session.user.name})
         } else {
             res.redirect('/auth')
         }
