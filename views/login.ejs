@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>ASAP Express</title>
+    </head>
+    <body>
+        <%- include('home') %>
+        <h3><%= message %></h3>
+        <form action="/auth" method="POST">
+            <input type="email" name="email" value="" placeholder="Email adress"><br><br>
+            <input type="password" name="password" value="" placeholder="Password"><br><br>
+            <input type="submit" value="Log In"><br>
+        </form>
+        OR<br><br>
+        <a href="/auth/register">
+            <input type="button" value="Sign Up">
+        </a>
+        <!-- <form action="/auth/register" method="GET">
+            <input type="submit" value="Sign Up">
+        </form> -->
+    </body>
+</html>
