@@ -3,7 +3,7 @@ const User = require('../controllers/userController')
 
 Routes.get('/', (req, res) => {res.render('login', {message: req.query.message})})
 Routes.post('/', (req, res) => {User.login(req, res)})
-Routes.get('/register', (req, res) => {res.render('register')})
+Routes.get('/register', (req, res) => {res.render('register', {message: req.query.message})})
 Routes.post('/register', (req, res) => {User.register(req, res)})
 Routes.get('/dashboard', (req, res) => {User.checkLogin(req, res)})
 

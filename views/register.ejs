@@ -4,6 +4,7 @@
     </head>
     <body>
         <%- include('home') %>
+        <h3><%= message %></h3>
         <form action="/auth/register" method="POST">
             <input type="text" name="name" value="" placeholder="Name"><br><br>
             <input type="email" name="email" value="" placeholder="Email adress"><br><br>
