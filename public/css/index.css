@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.fixedBG {
+    background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(254,255,255,1) 2%, rgba(209,236,240,1) 100%);
+    text-align: center;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.topbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,145,171,1) 0%, rgba(0,145,171,1) 2%, rgba(0,160,181,1) 100%);
+    box-shadow: 0 00.08vw 1vw rgb(12, 41, 89);
+}
+
+.boxhead a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.menu {
+    float: right;
+}
+.logo {
+    float: left;
+}
+
+.the_logo {
+    font-size: 2.9vw;
+    font-family: "Avenir";
+    line-height: 4.5vw;
+    float: right;
+    margin-left: 2.2vw;
+    color: #ffffff;
+}
+.menu_items {
+    font-size: 1.3vw;
+    font-family: "Avenir";
+    line-height: 4.5vw;
+    margin-right: 2vw;
+    color: #ffffff;
+}
+
+
+.menu_items:hover,
+.menu_items:focus a {
+
+  cursor: pointer;
+  color: #20ffff;
+}
+
+.table_items th td {
+    font-size: 2vw;
+}
