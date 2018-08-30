@@ -15,14 +15,14 @@
             </tr>
             <tr style="text-align: center">
                 <td><%= order.PackageId %></td>
-                <td><%= order.Package.size %></td>
-                <td><%= order.Package.weight %></td>
+                <td><%= order.Package.size %>m2</td>
+                <td><%= order.Package.weight %>kg</td>
                 <td><%= order.price %></td>
-                <td><%= order.deliveredTime %></td>
+                <td><%= order.deliveredTime %></td> 
             </tr>
         </table>
-        <p>Arrived</p>
-        <p>Cancel Order</p>
+        <a href="/order/arrived/<%= order.id %>">Arrived</a>
+        <a href="/order/cancel/<%= order.id %>">Cancel Order</a>
     </div>
     <% }) %>
 

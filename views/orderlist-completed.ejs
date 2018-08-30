@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body align = "center">
+    <h1>Ongoing Order list</h1>
+    <% orders.forEach( order =>{ %>
+    <h2>Order <%= order.id %></h2>
+    <div align="center">
+        <table style="border: 0.2vw solid black">
+            <tr>
+                <th>Package ID</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>Delivered At</th>
+                <th>Arrived At</th>
+            </tr>
+            <tr style="text-align: center">
+                <td><%= order.PackageId %></td>
+                <td><%= order.Package.size %>m2</td>
+                <td><%= order.Package.weight %>kg</td>
+                <td><%= order.price %></td>
+                <td><%= order.deliveredTime %></td> 
+                <td><%= order.arrivedTime %></td> 
+            </tr>
+        </table>
+    </div>
+    <% }) %>
+
+</body>
+</html>
