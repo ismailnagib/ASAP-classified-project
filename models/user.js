@@ -3,13 +3,21 @@ const Encryption = require('../controllers/encryption')
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     phone: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         isNumeric: {
           args: true,
           msg: "Phone number should only contain numeric characters"
+        },
+        len: {
+          args: [10,13],
+          msg: "Phone number should be 10 to 13 characters long"
         }
       }
     },

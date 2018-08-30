@@ -8,10 +8,13 @@ class UserController {
         .then(datum => {
             if(datum) {
                 req.session.user = {
-                    name: datum.dataValues.name
+                    name: datum.dataValues.name,
+                    role: datum.dataValues.role
                 }
                 if (datum.dataValues.role === "client") {
                     res.redirect('/auth/dashboard')
+                } else {
+                    res.redirect('/admin')
                 }
             }
         })
@@ -37,7 +40,8 @@ class UserController {
         User.create(newUser)
         .then(() => {
             req.session.user = {
-                name: req.body.name
+                name: req.body.name,
+                role: "client"
             }
             res.redirect('/auth/dashboard')
         })
@@ -57,6 +61,14 @@ class UserController {
     static checkLoginDashboard(req, res) {
         if (req.session.user) {
             res.render('dashboard', {name: req.session.user.name})
+        } else {
+            res.redirect('/auth')
+        }
+    }
+
+    static checkLoginAdmin(req, res) {
+        if (req.session.user && req.session.user.role === "admin") {
+            res.render('admin');
         } else {
             res.redirect('/auth')
         }
