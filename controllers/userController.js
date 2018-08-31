@@ -9,6 +9,7 @@ class UserController {
             .then(datum => {
                 if(datum) {
                     req.session.user = {
+                        id: datum.dataValues.id,
                         name: datum.dataValues.name,
                         role: datum.dataValues.role
                     }
@@ -45,6 +46,7 @@ class UserController {
             User.create(newUser)
             .then(() => {
                 req.session.user = {
+                    id: req.body.id,
                     name: req.body.name,
                     role: "client"
                 }
