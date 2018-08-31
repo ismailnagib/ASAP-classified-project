@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     PackageId: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
     isCompleted: DataTypes.BOOLEAN,
+    rating: DataTypes.INTEGER,
     deliveredTime: DataTypes.DATE,
     arrivedTime: DataTypes.DATE
   }, {

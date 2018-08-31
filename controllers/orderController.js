@@ -1,6 +1,6 @@
 const OrderModel = require('../models').Order,
-      PackageModel = require('../models').Package
-
+      PackageModel = require('../models').Package,
+      CourierModel = require('../models').Courier
 
 class OrderController {
     static orderListPage(req,res) {
@@ -89,7 +89,7 @@ class OrderController {
         .catch(err => {
             console.log(err);
             res.send(err.message)
-            
+
         })
     }
 
@@ -131,6 +131,11 @@ class OrderController {
             console.log(err);
             res.send(err.message)          
         })
+    }
+
+    static rating(req, res) {
+        OrderModel.findById(req.params.id, {include: []})
+
     }
 }
 
