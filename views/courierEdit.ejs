@@ -3,7 +3,7 @@
         <title>ASAP Express</title>
     </head>
     <body>
-        <%- include('home') %>
+        <%- include('partials/home') %>
         <form action="/courier/<%=id%>/edit" method="POST">
             <input type="text" name="name" value="<%=data.dataValues.name%>" placeholder="Name"><br><br>
             <input type="text" name="phone" value="<%=data.dataValues.phone%>" placeholder="Phone number"><br><br>
