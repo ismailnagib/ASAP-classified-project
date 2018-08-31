@@ -2,9 +2,15 @@ const OrderModel = require('../models').Order,
       PackageModel = require('../models').Package,
       CourierModel = require('../models').Courier
 
-
 class OrderController {
     static orderListPage(req,res) {
+        /*
+            req.session.user={
+                id:
+                name:
+                role:
+            }
+        */
         if (req.session.user) {
             OrderModel.findAll({
                 order: [['id','ASC']],
@@ -100,7 +106,7 @@ class OrderController {
         .catch(err => {
             console.log(err);
             res.send(err.message)
-            
+
         })
     }
 
@@ -141,6 +147,18 @@ class OrderController {
         .catch(err => {
             console.log(err);
             res.send(err.message)          
+        })
+    }
+
+    static rating(req, res) {
+        OrderModel.update({rating: req.body.rating}, {where: {id: req.params.id}})
+        OrderModel.findById(req.params.id, {include: [CourierModel]})
+        .then(data => {
+            CourierModel.update({rating: this.rating + req.body.rating, ratedBy: this.ratedBy + 1}, {where: {id: data.dataValues.Courier.dataValues.id}});
+            res.redirect('/order/completed')
+        })
+        .catch(err => {
+            console.log(err)
         })
     }
 }
