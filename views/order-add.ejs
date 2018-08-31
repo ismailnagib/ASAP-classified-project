@@ -1,16 +1,35 @@
 <!DOCTYPE html>
+<head>
+        <link rel="stylesheet" type="text/css" href="/css/index.css">
+        <title>Add Order</title>
+    </head>
 <html>
 <body align = "center">
-    <h1>Add Order</h1>
-    
+    <%- include('partials/nav') %>
+    <div style="margin-top: 10%">
+        <p style="font-family: Charter; font-size: 3.4vw; color: #0b5255;">Create New Order</p>
+        <br>
+        <br>
+        <p style="font-family: Charter; font-size: 2.2vw; color: #0b5255;">Please fill in the following form concerning you package</p>
+    </div>
+    <br>
+    <br>
+    <br>
     <div align="center">
-        <form action="/order/add" method="post">
+        <form action="/order/add" method="post" style=" color: #0b5255; font-family: Charter; line-height: 2vw; font-size: 2vw;">
             <p></p>
-            size: <input type="text" name="size"><br>
-            weight: <input type="text" name="weight"><br>
-            <input type="radio" name="isFragile" value="true">Fragile
-            <input type="radio" name="isFragile" value="false">Not Fragile
-            <input type="submit" value="Submit">
+            Size &nbsp; &nbsp;: <input style="line-height: 2vw; font-size: 2vw; border: 0.2vw solid #0b5255;" type="text" name="size"><br><br>
+            Weight&nbsp;: <input style="line-height: 2vw; font-size: 2vw; border: 0.2vw solid #0b5255;" type="text" name="weight"><br><br>
+            Courier:&nbsp;<select name="SubjectId" style="font-size: 2vw;">
+
+                    <option value="<%= 1 %>">hmmmm</option>
+                    <option value="<%= 2 %>">yang ini</option>
+                    <option value="<%= 3 %>">oh gitu ya</option>
+
+            </select> <br><br>
+            <input type="radio" name="isFragile" value="true"> &nbsp;Fragile &nbsp; 
+            <input type="radio" name="isFragile" value="false"> &nbsp;Not Fragile <br><br><br>
+            <input style="line-height: 2.7vw; font-size: 2vw; background: teal; width:8%; color: white; " type="submit" value="Submit">
           </form>
           
     </div>
