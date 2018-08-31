@@ -2,10 +2,9 @@ const express = require('express'),
       router = express.Router(),
       OrderModel = require('../models').Order,
       PackageModel = require('../models').Package
-      
 
 router
-    .get('/' , function(req,res) {
+    .get('/ongoing' , function(req,res) { // gw rubah dari /order jadi /order/ongoing // - ISMAIL
         OrderModel.findAll({
             order: [['id','ASC']],
             include: [{model: PackageModel}],
@@ -48,11 +47,16 @@ router
         })
     })
 
-    .get('/add' , function(req,res) {
-       res.render('order-add.ejs')
+    .get('/' , function(req,res) { // gw rubah dari /order/add jadi /order // - ISMAIL
+        if (req.session.user) {
+            res.render('order-add', {name: req.session.user.name})
+        } else {
+            res.redirect('/auth')
+        }
+        // INI GW RUBAH, BIAR ORDER-ADD NYA JADI HALAMAN UTAMA SAMA KALO BELOM LOGIN DI REDIRECT KE /AUTH // - ISMAIL
     })
 
-    .post('/add', function(req,res) {
+    .post('/', function(req,res) { // gw rubah dari /order/add jadi /order // - ISMAIL
         let data = req.body;
 
         var price = data.size * data.weight * 700
@@ -78,7 +82,7 @@ router
                 isFragile: data.isFragile
             })
             .then( () => {
-                res.redirect('/order')
+                res.redirect('/order/ongoing') // gw pindahin ke /order/ongoing // - ISMAIL
             })
         })
         .catch(err => {
@@ -98,7 +102,7 @@ router
             }
         })
         .then( () => {
-            res.redirect('/order')
+            res.redirect('/order/ongoing') // gw pindahin ke /order/ongoing // - ISMAIL
         })
         .catch(err => {
             console.log(err);
@@ -119,7 +123,7 @@ router
                 }
             })
             .then( () => {
-                res.redirect('/order')
+                res.redirect('/order/ongoing') // gw pindahin ke /order/ongoing // - ISMAIL
             })
         })
         .catch(err => {
