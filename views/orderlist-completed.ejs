@@ -16,6 +16,7 @@
             <table style="border: 0.6vw solid linear-gradient(to bottom, rgba(27,129,143,1) 0%, rgba(27,128,143,1) 2%, rgba(10,101,124,1) 100%); background: linear-gradient(to bottom, rgba(27,129,143,1) 0%, rgba(27,128,143,1) 2%, rgba(10,101,124,1) 100%); color: white; ">
                 <tr>
                     <th>Package ID</th>
+                    <th>Courier</th>
                     <th>Size</th>
                     <th>Weight</th>
                     <th>Price</th>
@@ -24,11 +25,12 @@
                 </tr>
                 <tr style="text-align: center;">
                     <td style="width: 9%; font-size: 2vw"><%= order.PackageId %></td>
+                    <td style="width: 9%; font-size: 2vw"><%= order.CourierId %></td>
                     <td style="width: 9%; font-size: 2vw"><%= order.Package.size %>cm2</td>
                     <td style="width: 9%; font-size: 2vw"><%= order.Package.weight %>kg</td>
                     <td style="width: 9%; font-size: 2vw"><%= order.price %></td>
-                    <td style="width: 11%; font-size: 1.5vw"><%= order.deliveredTime.toDateString() + ' ' + order.deliveredTime.toLocaleTimeString() %></td> 
-                    <td style="width: 11%; font-size: 1.5vw"><%= order.arrivedTime.toDateString() + ' ' + order.arrivedTime.toLocaleTimeString() %></td>
+                    <td style="width: 15%; font-size: 1.5vw"><%= order.deliveredTime.toDateString() + ' ' + order.deliveredTime.toLocaleTimeString() %></td> 
+                    <td style="width: 15%; font-size: 1.5vw"><%= order.arrivedTime.toDateString() + ' ' + order.arrivedTime.toLocaleTimeString() %></td>
                 </tr>
             </table>
         </div>

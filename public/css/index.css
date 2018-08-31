@@ -24,7 +24,6 @@
 }
 
 .boxhead a {
-    color: #FFFFFF;
     text-decoration: none;
 }
 
@@ -61,4 +60,24 @@
 
 .table_items th td {
     font-size: 2vw;
+}
+
+.arrive {
+    color: #0b5255;
+}
+
+.arrive:hover,
+.arrive:focus {
+    cursor: pointer;
+    color: #00a1b6;
+}
+
+.cancel {
+    color: #a00c0c;
+}
+
+.cancel:hover,
+.cancel:focus {
+    cursor: pointer;
+    color: #ff0a0a;
 }
