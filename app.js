@@ -19,7 +19,6 @@ app.use(session({
     secret: "a secret",
     resave: false,
     saveUninitialized: true,
-    cookie: true,
 }))
 
 app.get('/', (req, res) => {res.redirect('/auth')})
