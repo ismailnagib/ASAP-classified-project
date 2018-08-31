@@ -14,13 +14,16 @@ class OrderController {
         if (req.session.user) {
             OrderModel.findAll({
                 order: [['id','ASC']],
-                include: [{model: PackageModel}],
+                include: [PackageModel,CourierModel],
                 where: {
                     UserId: req.session.user.id, // Nanti di ganti jadi dinamis
                     isCompleted: false
                 }
             })
             .then( orders => {
+                // console.log(orders);
+                
+                // res.send(orders)
                 res.render('orderlist-progress', {orders: orders})
             })
             .catch(err => {
@@ -39,7 +42,7 @@ class OrderController {
                 order: [['id','ASC']],
                 include: [{model: PackageModel}],
                 where: {
-                    UserId: 1, // Nanti di ganti jadi dinamis
+                    UserId: req.session.user.id, // Nanti di ganti jadi dinamis
                     isCompleted: true
                 }
             })
@@ -57,8 +60,15 @@ class OrderController {
     }
 
     static addOrderPage (req,res) {
+
         if (req.session.user) {
-            res.render('order-add.ejs')
+            CourierModel.findAll({
+                order:[['id','ASC']]
+            })
+            .then( couriers => {
+                res.render('order-add.ejs', {couriers: couriers})
+            })
+            
         } else {
             res.redirect('/auth')
         }
@@ -73,8 +83,8 @@ class OrderController {
         }
 
         OrderModel.create({
-            UserId: null,
-            CourierId: null,
+            UserId: req.session.user.id,
+            CourierId: data.CourierId,
             PackageId: null,
             price: price,
             isCompleted: false,

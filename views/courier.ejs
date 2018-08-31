@@ -1,9 +1,10 @@
 <html>
-    <head>
-        <title>ASAP Express</title>
-    </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <title>Dashboard</title>
+</head>
     <body>
-        <%- include('partials/home') %>
+        <%- include('partials/nav') %>
         <h3><%= message %></h3>
         <form action="/courier" method="POST">
             <input type="text" name="name" value="" placeholder="Name"><br><br>

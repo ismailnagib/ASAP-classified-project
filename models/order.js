@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     arrivedTime: DataTypes.DATE
   }, {
     hooks: {
-      beforeCreate : (input , options) => {
-        input.UserId = 1
-        input.CourierId = 1        
-      },
       afterCreate: (input, options) => {
         sequelize.models.Order.update({
           PackageId: input.id
