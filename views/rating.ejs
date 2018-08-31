@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>ASAP Express</title>
+    </head>
+    <body>
+        <%- include('partials/home') %>
+        <form action='/order/rating/<%=id%>' method="POST">
+            <input type="number" min="1" max="5" name="rating"><br><br>
+            <input type="submit" value="Rate">
+        </form>
+    </body>
+</html>
