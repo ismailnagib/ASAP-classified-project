@@ -4,45 +4,57 @@ const OrderModel = require('../models').Order,
 
 class OrderController {
     static orderListPage(req,res) {
-        OrderModel.findAll({
-            order: [['id','ASC']],
-            include: [{model: PackageModel}],
-            where: {
-                UserId: 1, // Nanti di ganti jadi dinamis
-                isCompleted: false
-            }
-        })
-        .then( orders => {
-            res.render('orderlist-progress', {orders: orders})
-        })
-        .catch(err => {
-            console.log(err)
-            res.send(err.message)
-            
-        })
+        if (req.session.user) {
+            OrderModel.findAll({
+                order: [['id','ASC']],
+                include: [{model: PackageModel}],
+                where: {
+                    UserId: 1, // Nanti di ganti jadi dinamis
+                    isCompleted: false
+                }
+            })
+            .then( orders => {
+                res.render('orderlist-progress', {orders: orders})
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err.message)
+                
+            })
+        } else {
+            res.redirect('/auth')
+        }
     }
 
     static completedListPage(req,res) {
-        OrderModel.findAll({
-            order: [['id','ASC']],
-            include: [{model: PackageModel}],
-            where: {
-                UserId: 1, // Nanti di ganti jadi dinamis
-                isCompleted: true
-            }
-        })
-        .then( orders => {
-            res.render('orderlist-completed', {orders: orders})
-        })
-        .catch(err => {
-            console.log(err)
-            res.send(err.message)
-            
-        })
+        if (req.session.user) {
+            OrderModel.findAll({
+                order: [['id','ASC']],
+                include: [{model: PackageModel}],
+                where: {
+                    UserId: 1, // Nanti di ganti jadi dinamis
+                    isCompleted: true
+                }
+            })
+            .then( orders => {
+                res.render('orderlist-completed', {orders: orders})
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err.message)
+                
+            })
+        } else {
+            res.redirect('/auth')
+        }
     }
 
     static addOrderPage (req,res) {
-        res.render('order-add.ejs')
+        if (req.session.user) {
+            res.render('order-add.ejs')
+        } else {
+            res.redirect('/auth')
+        }
     }
 
     static addingOrder(req,res) {

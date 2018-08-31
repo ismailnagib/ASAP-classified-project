@@ -75,6 +75,11 @@ class UserController {
             res.redirect('/auth')
         }
     }
+
+    static logout(req, res) {
+        req.session.user = null;
+        res.redirect('/auth');
+    }
 }
 
 module.exports = UserController
