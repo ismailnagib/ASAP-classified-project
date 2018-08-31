@@ -39,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   Order.associate = function(models) {
     Order.belongsTo(models.Package)
+    Order.belongsTo(models.User)
+    Order.belongsTo(models.Courier)
   };
   return Order;
 };

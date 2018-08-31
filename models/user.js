@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   User.associate = function(models) {
-    User.belongsToMany(models.Courier, {through: models.Order})
+    User.hasMany(models.Order)
   };
   return User;
 };
