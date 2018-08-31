@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Courier.associate = function(models) {
     Courier.belongsToMany(models.User, {through: models.Order})
+    Courier.hasMany(models.Order)
   };
   Courier.prototype.toggleAvailability = function() {
     if (this.isAvailable) {
