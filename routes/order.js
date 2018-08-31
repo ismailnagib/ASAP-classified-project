@@ -9,6 +9,7 @@ router
     .post('/', OrderController.addingOrder)
     .get('/arrived/:id', OrderController.makeOrderComplete)
     .get('/cancel/:id', OrderController.cancelOrder)
-    .get('/rating/:id', OrderController.rating)
+    .get('/rating/:id', OrderController.ratingSet)
+    .post('/rating/:id', OrderController.rating)
 
 module.exports = router;

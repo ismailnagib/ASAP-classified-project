@@ -150,6 +150,10 @@ class OrderController {
         })
     }
 
+    static ratingSet(req, res) {
+        res.render('rating', {id: req.params.id})
+    }
+
     static rating(req, res) {
         OrderModel.update({rating: req.body.rating}, {where: {id: req.params.id}})
         OrderModel.findById(req.params.id, {include: [CourierModel]})
@@ -162,6 +166,5 @@ class OrderController {
         })
     }
 }
-
 
 module.exports = OrderController;
